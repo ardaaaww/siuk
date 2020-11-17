@@ -52,11 +52,16 @@ module.exports = {
          if(!result[0]) return message.channel.send('arama Sonucu Bulunamadı.')
         songData = await ytdl.getInfo(result[0].url,{});
         song = {
-       title: songData.videoDetails.title,
-          url: result[0].url,
-          duration: songData.videoDetails.lengthSeconds,
-          thumbnail : songData.videoDetails.thumbnail.thumbnails[0].url,
-          author : songData.videoDetails.author.name
+           title: songData.videoDetails.title,
+           url: result[0].url,
+           duration: songData.videoDetails.lengthSeconds,
+           thumbnail : songData.videoDetails.thumbnail.thumbnails[0].url,
+           author : songData.videoDetails.author.name,
+           wiews : songData.videoDetails.viewCount,
+          likes : {
+          trues : songData.videoDetails.likes.toLocaleString(),
+          falses :songData.videoDetails.dislikes.toLocaleString()
+         }
         };
       } catch (error) {
         if (message.include === "copyright") {
@@ -72,14 +77,14 @@ module.exports = {
         if(!result[0]) return message.channel.send('arama Sonucu Bulunamadı.')
         songData = await ytdl.getInfo(result[0].url)
          song = {
-          title: songData.videoDetails.title,
-          url: result[0].url,
-          duration: songData.videoDetails.lengthSeconds,
-          thumbnail : songData.videoDetails.thumbnail.thumbnails[0].url,
-          author : songData.videoDetails.author.name,
+           title: songData.videoDetails.title,
+           url: result[0].url,
+           duration: songData.videoDetails.lengthSeconds,
+           thumbnail : songData.videoDetails.thumbnail.thumbnails[0].url,
+           author : songData.videoDetails.author.name,
            wiews : songData.videoDetails.viewCount,
-           likes : {
-           trues : songData.videoDetails.likes.toLocaleString(),
+          likes : {
+          trues : songData.videoDetails.likes.toLocaleString(),
           falses :songData.videoDetails.dislikes.toLocaleString()
          }
         };
@@ -91,7 +96,16 @@ module.exports = {
     
     if(serverQueue) {
       serverQueue.songs.push(song)
-      return serverQueue.textChannel.send(new Discord.MessageEmbed().setTitle('Sıraya Eklendi!').setAuthor(song.author).setDescription(`**${song.title}**`).setThumbnail(song.thumbnail))
+      return serverQueue.textChannel.send( new Discord.MessageEmbed()
+        .setAuthor('Sıraya Eklendi!',message.author.avatarURL({format : "png",dynamic : true}))
+        .setTitle(song.title)
+        .setURL(song.url)
+        .setThumbnail(song.thumbnail)
+        .addField('kanal',song.author,true)
+        .addField('Süre Saniye',song.duration,true)
+        .addField('İzlenme Sayısı',song.wiews.toLocaleString(),true)
+        .addField('👍',song.likes.trues,true)
+        .addField('👎',song.likes.falses,true))
       .catch(console.error)
     } else {
       queueConstruct.songs.push(song);
