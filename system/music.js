@@ -12,7 +12,7 @@ module.exports = {
     }
     
     try {
-      var stream = await ytdlDiscord(song.url, {
+      var stream = await ytdlDiscord(song, {
         highWaterMark: 1 << 25,
       });
       

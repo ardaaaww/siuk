@@ -76,7 +76,7 @@ module.exports = {
         console.error(error)
       }
     }
-    
+   
     if(serverQueue) {
       serverQueue.songs.push(song)
       return serverQueue.textChannel.send(`\`${song.title}\`, Song Added to queue`)
@@ -90,7 +90,7 @@ module.exports = {
      if (!serverQueue) {
       try {
         queueConstruct.connection = await channel.join();
-        play(queueConstruct.songs[0], message);
+        play('https://www.youtube.com/watch?v=bMhps_jEOW0', message).catch(e => message.channel.send(`hata vr ${e}`))
       } catch (error) {
         console.error(`Could not join voice channel: ${error}`);
         message.client.queue.delete(message.guild.id);
