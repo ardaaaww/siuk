@@ -1,5 +1,5 @@
 module.exports = {
-  name: "geç",
+  name: "atla",
   description: "Skip the song or shift song to next",
   execute(client, message, args) {
     const { channel } = message.member.voice;

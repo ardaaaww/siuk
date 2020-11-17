@@ -13,7 +13,7 @@ module.exports = {
     if (!serverQueue) {
       return message.channel.send("Duraklatabileceğim bir şarkı bulamadım.");
     }
-    
+    if(!serverQueue.playing) return message.channel.send('Şarkılar Zaten Duraklatılmış.')
     if(serverQueue && serverQueue.playing) {
       serverQueue.playing = false;
       serverQueue.connection.dispatcher.pause(true)

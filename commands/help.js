@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const {PREFİX} = require('../config.json')
+const {PREFIX} = require('../config.json')
 module.exports = {
   name: "yardım",
   description: "yardım",
@@ -7,11 +7,13 @@ module.exports = {
   message.channel.send(new Discord.MessageEmbed()
                       .setDescription(
     `
-${PREFİX}oynat <şarkı-adı> : Bir Şarkıyı Oynatır.
-${PREFİX}atla : Sıradaki Şarkıyı atlar.
-${PREFİX}loop : O Anki şarkıyı Hep tekrarlar.
-${PREFİX}durdur : O anki Şarkıyı Durdurur.
-${PREFİX}sıra : o anki
+\`${PREFIX}oynat <şarkı-adı>\` : **Bir Şarkıyı Oynatır.**
+\`${PREFIX}atla\` : **Sıradaki Şarkıyı atlar.**
+\`${PREFIX}döngü\` : **O Anki şarkıyı Hep tekrarlar.**
+\`${PREFIX}durdur\` : **O anki Şarkıyı Durdurur.**
+\`${PREFIX}devam\` : **Duran Şarkıyı Devam Ettirir.**
+\`${PREFIX}sıra\` : **O Anki Sırayı Gösterir.**
+
 
 
 
