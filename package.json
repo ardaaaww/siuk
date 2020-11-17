@@ -1,6 +1,6 @@
 {
   "//1": "Lrows V12 Müzik pardon v12",
-  "name": "31cekenkamlumbaga",
+  "name": "lrowsmuzik",
   "version": "0.0.1",
   "description": "A simple Node app built on Express, instantly up and running.",
   "main": "Lrows.js",
@@ -30,5 +30,5 @@
     "glitch",
     "express"
   ],
-  "author": "Can"
+  "author": "Lrows"
 }
