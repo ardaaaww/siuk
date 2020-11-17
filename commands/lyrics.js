@@ -7,7 +7,7 @@ module.exports = {
     
      const { channel } = message.member.voice;
     if (!channel) {
-      //IF AUTHOR IS NOT IN VOICE CHANNEL
+
       return message.channel.send("Herhangi bir ses kanalında bulunmalısınız.");
     }
 
@@ -20,7 +20,7 @@ module.exports = {
   let m = await message.channel.send("Şarkı sözlerini arıyorum.")  
     
     
-    //NOw we gonna see on playing song
+
   Genius.tracks.search(serverQueue.songs[0].title)
 .then(results => {
     const song = results[0];

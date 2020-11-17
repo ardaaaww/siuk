@@ -4,48 +4,44 @@ const { readdirSync } = require("fs");
 const { join } = require("path");
 const { TOKEN, PREFIX } = require("./config.json")
 
-//CLIENT EVENTS
+
 client.on("ready", () => {
   console.log('Ready TO play some soft songs')
-  client.user.setActivity("!yardım |MitaS DJ! ")
-  client.user.setActivity("Instagram/mita2334 ")
+  client.user.setActivity("!yardım")
 })
 
 client.on("warn", info => console.log(info));
 
 client.on("error", console.error)
 
-//DEFINIING
 client.commands = new discord.Collection()
 client.prefix = PREFIX
 client.queue = new Map();
 
 
-//LETS LOAD ALL FILES
 const cmdFiles = readdirSync(join(__dirname, "commands")).filter(file => file.endsWith(".js"))
 for (const file of cmdFiles) {
   const command = require(join(__dirname, "commands", file))
   client.commands.set(command.name, command)
-} //LOADING DONE
+} 
 
 
-//WHEN SOMEONE MESSAGE
 client.on("message", message => {
    if (message.author.bot) return;
   if (!message.guild) return;
   
-  if(message.content.startsWith(PREFIX)) { //IF MESSSAGE STARTS WITH MINE BOT PREFIX
+  if(message.content.startsWith(PREFIX)) {
     
-    const args = message.content.slice(PREFIX.length).trim().split(/ +/) //removing prefix from args
+    const args = message.content.slice(PREFIX.length).trim().split(/ +/)
     const command = args.shift().toLowerCase();
     
     if(!client.commands.has(command)) {
       return;
     } 
     
-  try  { //TRY TO GET COMMAND AND EXECUTE
+  try  { 
       client.commands.get(command).execute(client, message, args)
-    } catch (err) { //IF IT CATCH ERROR
+    } catch (err) { 
       console.log(err)
       message.reply("I am getting error on using this command")
     }
@@ -55,8 +51,4 @@ client.on("message", message => {
   
 });
 
-
-
-
-//DONT DO ANYTHING WITH THIS TOKEN lol
 client.login(TOKEN)

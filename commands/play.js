@@ -8,19 +8,19 @@ module.exports = {
   name: "oynat",
   description: "PLAY THE SOFTNESS OF THE SOUND",
   async execute(client, message, args) {
-    //FIRST OF ALL WE WILL ADD ERROR MESSAGE AND PERMISSION MESSSAGE
+
     if (!args.length) {
-      //IF AUTHOR DIDENT GIVE URL OR NAME
-      return message.channel.send("YANLIŞ SÖZDİZİMİ: oynat <URL> veya metin yazın");
+
+      return message.channel.send("Şarkı ismi veya Linki Vermen Gerek");
     }
 
     const { channel } = message.member.voice;
     if (!channel) {
-      //IF AUTHOR IS NOT IN VOICE CHANNEL
+      
       return message.channel.send("Herhangi bir ses kanalında bulunmalısınız.");
     }
 
-    //WE WILL ADD PERMS ERROR LATER :(
+
 
     const targetsong = args.join(" ");
     const videoPattern = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
@@ -95,7 +95,7 @@ module.exports = {
         console.error(`Could not join voice channel: ${error}`);
         message.client.queue.delete(message.guild.id);
         await channel.leave();
-        return message.channel.send({embed: {"description": `😭 | Kanala giriş yapamıyorum.: ${error}`, "color": "#ff2050"}}).catch(console.error);
+        return message.channel.send({embed: {"description": `Kanala giriş yapamıyorum.: ${error}`, "color": "#ff2050"}}).catch(console.error);
       }
     }
     

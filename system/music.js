@@ -1,4 +1,4 @@
-//I WILL BE BACK AFTER 5 min
+
 const ytdlDiscord = require("ytdl-core-discord");
 
 module.exports = {
@@ -40,7 +40,7 @@ module.exports = {
         module.exports.play(queue.songs[0], message)
       }
     }).on("error", console.error)
-    dispatcher.setVolumeLogarithmic(queue.volume / 100); //VOLUME
+    dispatcher.setVolumeLogarithmic(queue.volume / 100); //sesi buradan arttırırsınız
     
     
     
