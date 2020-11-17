@@ -11,8 +11,9 @@ module.exports = {
 
 youtube.searchVideos('Centuries', 4)
     .then(async results => {
-  let  songData = await ytdl.getInfo(results[0].url)
-        message.channel.send(`Video Oynatılıyor. ${results[0].title} ${songData.title}`);
+ ytdl.getInfo(results[0].url,{}).then(a =>{
+        message.channel.send(`Video Oynatılıyor. ${results[0].title} ${a.videoDetails.author.name}`);
+  })
     })
     .catch(console.log);
   }

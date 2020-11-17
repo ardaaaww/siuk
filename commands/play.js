@@ -49,11 +49,12 @@ module.exports = {
     if (urlcheck) {
       try {
          if(!result[0]) return message.channel.send('arama Sonucu Bulunamadı.')
-        songData = await ytdl.getInfo(result[0].url);
+        songData = await ytdl.getInfo(result[0].url,{});
         song = {
-          title: songData.title,
+          title: songData.videoDetails.title,
           url: result[0].url,
-          duration: songData.length_seconds
+          duration: songData.videoDetails.lengthSeconds,
+          Kfoto : songData.videoDetails.thumbnail
         };
       } catch (error) {
         if (message.include === "copyright") {

@@ -44,7 +44,7 @@ module.exports = {
     
     
     
-      queue.textChannel.send(`**Oynatılan Şarkı** - \`[${song.title}](${song.url})\``)
+      queue.textChannel.send(new Discord.MessageEmbed())
     
     
   }
