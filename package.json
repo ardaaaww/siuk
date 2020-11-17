@@ -1,6 +1,6 @@
-  {
-  "//1": "Lrows V12 Müzik",
-  "name": "Lrows V12 Müzik",
+{
+  "//1": "Lrows V12 Müzik pardon v12",
+  "name": "31cekenkamlumbaga",
   "version": "0.0.1",
   "description": "A simple Node app built on Express, instantly up and running.",
   "main": "Lrows.js",
@@ -9,14 +9,14 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "discord.js": "^12.1.1",
+    "discord.js": "^12.4.0",
     "fs": "^0.0.2",
     "path": "^0.12.7",
     "simple-youtube-api": "^5.2.1",
-    "ytdl-core": "^2.1.0",
-    "ytdl-core-discord": "^1.2.0",
-    "@discordjs/opus": "^0.1.0",
-    "genius-lyrics": "^2.0.0"
+    "@discordjs/opus": "^0.3.2",
+    "genius-lyrics": "^4.0.0",
+    "ytdl-core": "^4.0.5",
+    "ytdl-core-discord": "^1.2.4"
   },
   "engines": {
     "node": "12.x"

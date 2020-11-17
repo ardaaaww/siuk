@@ -1,4 +1,5 @@
 const discord = require("discord.js")
+
 const client = new discord.Client({ disableEveryone: true, disabledEvents: ["TYPING_START"] });
 const { readdirSync } = require("fs");
 const { join } = require("path");
