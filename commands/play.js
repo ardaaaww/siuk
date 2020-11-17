@@ -45,7 +45,7 @@ module.exports = {
 
     let songData = null;
     let song = null;
-
+ const result = await youtube.searchVideos(targetsong, 1)
     if (urlcheck) {
       try {
         songData = await ytdl.getInfo(args[0]);
@@ -65,13 +65,16 @@ module.exports = {
       }
     } else {
       try {
-        const result = await youtube.searchVideos(targetsong, 1)
+        
         songData = await ytdl.getInfo(result[0].url)
          song = {
           title: songData.title,
-          url: songData.video_url,
+          url: result.url,
           duration: songData.length_seconds
         };
+        if(!songData){
+          return message.channel.send('no match')
+        }
       } catch (error) {
         console.error(error)
       }
@@ -89,8 +92,9 @@ module.exports = {
     
      if (!serverQueue) {
       try {
+        await queueConstruct.songs.push(song.url)
         queueConstruct.connection = await channel.join();
-        play(queueConstruct.songs[0], message);
+        play(result.url, message);
       } catch (error) {
         console.error(`Could not join voice channel: ${error}`);
         message.client.queue.delete(message.guild.id);
