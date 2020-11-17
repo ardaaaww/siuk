@@ -50,9 +50,10 @@ module.exports = {
     if (urlcheck) {
       try {
          
-         
-        songData = await ytdl.getInfo(args[0],{});
-        if(!songData) return message.channel.send('Bu linkde bir şarkı bulamadım')
+         const result = await youtube.searchVideos(args[0], 1)
+         if(!result) return message.channel.send('Bu linkde bir şarkı bulamadım')
+        songData = await ytdl.getInfo(result[0].url,{});
+       
         console.log(songData)
         song = {
            title: songData.videoDetails.title,
