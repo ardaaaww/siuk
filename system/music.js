@@ -44,7 +44,21 @@ module.exports = {
     
     
     
-      queue.textChannel.send(new Discord.MessageEmbed().setAuthor('Oynatılıyor!',message.author.avatarURL({format : "png",dynamic : true}.setTitle(song.title).setURL(song.url))))
+      queue.textChannel.send(
+        new Discord.MessageEmbed()
+        .setAuthor('Oynatılıyor!',message.author.avatarURL({format : "png",dynamic : true}))
+        .setTitle(song.title)
+        .setURL(song.url)
+        .setThumbnail(song.thumbnail)
+        .addField('kanal',song.author,true)
+        .addField('Süre Saniye',song.duration,true)
+        .addField('İzlenme Sayısı',song.wiews.toLocaleString(),true)
+        .addField('👍',song.likes.trues,true)
+        .addField('👎',song.likes.falses,true)
+      
+      
+      
+      )
     
     
   }

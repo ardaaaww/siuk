@@ -76,7 +76,12 @@ module.exports = {
           url: result[0].url,
           duration: songData.videoDetails.lengthSeconds,
           thumbnail : songData.videoDetails.thumbnail.thumbnails[0].url,
-          author : songData.videoDetails.author.name
+          author : songData.videoDetails.author.name,
+           wiews : songData.videoDetails.viewCount,
+           likes : {
+           trues : songData.videoDetails.likes.toLocaleString(),
+          falses :songData.videoDetails.dislikes.toLocaleString()
+         }
         };
        
       } catch (error) {
