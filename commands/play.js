@@ -48,10 +48,11 @@ module.exports = {
  const result = await youtube.searchVideos(targetsong, 1)
     if (urlcheck) {
       try {
-        songData = await ytdl.getInfo(args[0]);
+         if(!result[0]) return message.channel.send('arama Sonucu Bulunamadı.')
+        songData = await ytdl.getInfo(result[0].url);
         song = {
           title: songData.title,
-          url: songData.video_url,
+          url: result[0].url,
           duration: songData.length_seconds
         };
       } catch (error) {
@@ -65,11 +66,11 @@ module.exports = {
       }
     } else {
       try {
-        
-        songData = await ytdl.getInfo(result[0].url)
+        if(!result[0]) return message.channel.send('arama Sonucu Bulunamadı.')
+        songData = await ytdl.getInfo('https://www.youtube.com/watch?v=bMhps_jEOW0')
          song = {
           title: songData.title,
-          url: result.url,
+          url: result[0].url,
           duration: songData.length_seconds
         };
         if(!songData){
@@ -92,9 +93,10 @@ module.exports = {
     
      if (!serverQueue) {
       try {
-        await queueConstruct.songs.push(song.url)
+    
         queueConstruct.connection = await channel.join();
-        play(result.url, message);
+        play(song.url, message);
+        message.channel.send(`${songData.title}, oynatılıyor...`)
       } catch (error) {
         console.error(`Could not join voice channel: ${error}`);
         message.client.queue.delete(message.guild.id);
