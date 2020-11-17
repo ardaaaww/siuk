@@ -51,7 +51,7 @@ module.exports = {
       try {
          
          const result = await youtube.searchVideos(args[0], 1)
-         if(!result) return message.channel.send('Bu linkde bir şarkı bulamadım')
+         if(!result[0]) return message.channel.send('Bu linkde bir şarkı bulamadım')
         songData = await ytdl.getInfo(result[0].url,{});
        
         console.log(songData)
