@@ -67,15 +67,13 @@ module.exports = {
     } else {
       try {
         if(!result[0]) return message.channel.send('arama Sonucu Bulunamadı.')
-        songData = await ytdl.getInfo('https://www.youtube.com/watch?v=bMhps_jEOW0')
+        songData = await ytdl.getInfo(result[0].url)
          song = {
-          title: songData.title,
+          title: result[0].title,
           url: result[0].url,
           duration: songData.length_seconds
         };
-        if(!songData){
-          return message.channel.send('no match')
-        }
+       
       } catch (error) {
         console.error(error)
       }
@@ -83,7 +81,7 @@ module.exports = {
     
     if(serverQueue) {
       serverQueue.songs.push(song)
-      return serverQueue.textChannel.send(`\`${song.title}\`, Song Added to queue`)
+      return serverQueue.textChannel.send(`\`${song.title}\`, Adlı şarkı Sıraya Eklendi!`)
       .catch(console.error)
     } else {
       queueConstruct.songs.push(song);
@@ -95,8 +93,7 @@ module.exports = {
       try {
     
         queueConstruct.connection = await channel.join();
-        play(song.url, message);
-        message.channel.send(`${songData.title}, oynatılıyor...`)
+        play(song, message)
       } catch (error) {
         console.error(`Could not join voice channel: ${error}`);
         message.client.queue.delete(message.guild.id);
