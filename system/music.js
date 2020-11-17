@@ -1,6 +1,6 @@
 
 const ytdlDiscord = require("ytdl-core-discord");
-
+const Discord = require('discord.js')
 module.exports = {
   async play(song, message) {
     const queue = message.client.queue.get(message.guild.id);
@@ -44,7 +44,7 @@ module.exports = {
     
     
     
-      queue.textChannel.send(new Discord.MessageEmbed())
+      queue.textChannel.send(new Discord.MessageEmbed().setAuthor('Oynatılıyor!',message.author.avatarURL({format : "png",dynamic : true}.setTitle(song.title).setURL(song.url))))
     
     
   }

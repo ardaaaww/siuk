@@ -3,6 +3,7 @@ const { YOUTUBE_API_KEY } = require("../config.json");
 const ytdl = require("ytdl-core");
 const YoutubeAPI = require("simple-youtube-api");
 const youtube = new YoutubeAPI(YOUTUBE_API_KEY);
+const Discord = require('discord.js')
 const { play } = require("../system/music.js") 
 module.exports = {
   name: "oynat",
@@ -51,10 +52,11 @@ module.exports = {
          if(!result[0]) return message.channel.send('arama Sonucu Bulunamadı.')
         songData = await ytdl.getInfo(result[0].url,{});
         song = {
-          title: songData.videoDetails.title,
+       title: songData.videoDetails.title,
           url: result[0].url,
           duration: songData.videoDetails.lengthSeconds,
-          Kfoto : songData.videoDetails.thumbnail
+          thumbnail : songData.videoDetails.thumbnail.thumbnails[0].url,
+          author : songData.videoDetails.author.name
         };
       } catch (error) {
         if (message.include === "copyright") {
@@ -70,9 +72,11 @@ module.exports = {
         if(!result[0]) return message.channel.send('arama Sonucu Bulunamadı.')
         songData = await ytdl.getInfo(result[0].url)
          song = {
-          title: result[0].title,
+          title: songData.videoDetails.title,
           url: result[0].url,
-          duration: songData.length_seconds
+          duration: songData.videoDetails.lengthSeconds,
+          thumbnail : songData.videoDetails.thumbnail.thumbnails[0].url,
+          author : songData.videoDetails.author.name
         };
        
       } catch (error) {
@@ -82,7 +86,7 @@ module.exports = {
     
     if(serverQueue) {
       serverQueue.songs.push(song)
-      return serverQueue.textChannel.send(`\`${song.title}\`, Adlı şarkı Sıraya Eklendi!`)
+      return serverQueue.textChannel.send(new Discord.MessageEmbed().setTitle('Sıraya Eklendi!').setAuthor(song.author).setDescription(`**${song.title}**`).setThumbnail(song.thumbnail))
       .catch(console.error)
     } else {
       queueConstruct.songs.push(song);
