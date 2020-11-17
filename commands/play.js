@@ -46,14 +46,16 @@ module.exports = {
 
     let songData = null;
     let song = null;
- const result = await youtube.searchVideos(targetsong, 1)
+
     if (urlcheck) {
       try {
-         if(!result[0]) return message.channel.send('arama Sonucu Bulunamadı.')
-        songData = await ytdl.getInfo(result[0].url,{});
+         
+         
+        songData = await ytdl.getInfo(args[0],{});
+        if(!songData) return message.channel.send('Bu linkde bir şarkı bulamadım')
         song = {
            title: songData.videoDetails.title,
-           url: result[0].url,
+           url: songData.url,
            duration: songData.videoDetails.lengthSeconds,
            thumbnail : songData.videoDetails.thumbnail.thumbnails[0].url,
            author : songData.videoDetails.author.name,
@@ -63,6 +65,8 @@ module.exports = {
           falses :songData.videoDetails.dislikes.toLocaleString()
          }
         };
+   
+
       } catch (error) {
         if (message.include === "copyright") {
           return message
@@ -74,6 +78,7 @@ module.exports = {
       }
     } else {
       try {
+         const result = await youtube.searchVideos(targetsong, 1)
         if(!result[0]) return message.channel.send('arama Sonucu Bulunamadı.')
         songData = await ytdl.getInfo(result[0].url)
          song = {
@@ -87,8 +92,9 @@ module.exports = {
           trues : songData.videoDetails.likes.toLocaleString(),
           falses :songData.videoDetails.dislikes.toLocaleString()
          }
+  
         };
-       
+
       } catch (error) {
         console.error(error)
       }
