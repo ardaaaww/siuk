@@ -15,7 +15,7 @@ module.exports = {
       return message.channel.send("Herhangi bir şarkı oynatmıyorum.");
     }
     
-    message.channel.send(serverQueue.songs[0].title + 'Şuanda Oynatılan Şarkı.')
+    message.channel.send(serverQueue.songs[0].title + ' - Şuanda Oynatılan Şarkı.')
 
     
     

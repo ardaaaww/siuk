@@ -13,7 +13,7 @@ module.exports = {
 \`${PREFIX}durdur\` : **O anki Şarkıyı Durdurur.**
 \`${PREFIX}devam\` : **Duran Şarkıyı Devam Ettirir.**
 \`${PREFIX}sıra\` : **O Anki Sırayı Gösterir.**
-
+\`${PREFIX}np\` : **O Anki Oynatılan Şarkıyı Söyler.**
 
 
 
