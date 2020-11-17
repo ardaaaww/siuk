@@ -53,9 +53,10 @@ module.exports = {
          
         songData = await ytdl.getInfo(args[0],{});
         if(!songData) return message.channel.send('Bu linkde bir şarkı bulamadım')
+        console.log(songData)
         song = {
            title: songData.videoDetails.title,
-           url: songData.url,
+           url: songData.videoDetails.video_url,
            duration: songData.videoDetails.lengthSeconds,
            thumbnail : songData.videoDetails.thumbnail.thumbnails[0].url,
            author : songData.videoDetails.author.name,
@@ -83,7 +84,7 @@ module.exports = {
         songData = await ytdl.getInfo(result[0].url)
          song = {
            title: songData.videoDetails.title,
-           url: result[0].url,
+           url: songData.videoDetails.video_url,
            duration: songData.videoDetails.lengthSeconds,
            thumbnail : songData.videoDetails.thumbnail.thumbnails[0].url,
            author : songData.videoDetails.author.name,
