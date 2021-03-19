@@ -3,9 +3,9 @@
   "name": "lrowsmuzik",
   "version": "0.0.1",
   "description": "A simple Node app built on Express, instantly up and running.",
-  "main": "Lrows.js",
+  "main": "Asreaper.js",
   "scripts": {
-    "start": "node Lrows.js"
+    "start": "node Asreaper.js"
   },
   "dependencies": {
     "express": "^4.17.1",
