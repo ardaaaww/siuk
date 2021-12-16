@@ -92,7 +92,7 @@ module.exports = {
            wiews : songData.videoDetails.viewCount,
           likes : {
           trues : songData.videoDetails.likes.toLocaleString(),
-          falses :songData.videoDetails.dislikes.toLocaleString()
+          falses :undefined
          }
   
         };
