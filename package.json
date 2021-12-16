@@ -8,14 +8,14 @@
     "start": "node Asreaper.js"
   },
   "dependencies": {
-    "@discordjs/opus": "^0.3.3",
-    "discord.js": "^12.5.1",
     "express": "^4.17.1",
+    "discord.js": "^12.5.1",
     "fs": "^0.0.2",
-    "genius-lyrics": "^4.2.0",
     "path": "^0.12.7",
     "simple-youtube-api": "^5.2.1",
-    "ytdl-core": "^4.9.2",
+    "@discordjs/opus": "^0.3.3",
+    "genius-lyrics": "^4.2.0",
+    "ytdl-core": "^4.4.4",
     "ytdl-core-discord": "^1.2.5"
   },
   "engines": {
